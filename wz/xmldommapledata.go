@@ -156,11 +156,10 @@ func (x *XMLDomMapleData) Get() interface{} {
 	case CANVAS:
 		w := x.node.Ai("", "width")
 		h := x.node.Ai("", "height")
-		// bdata := x.node.As("", "basedata")
+		bdata := x.node.As("", "basedata")
 
-		// return NewB64MapleCanvas(w, h, bdata)
-		return NewFileStoredPngMapleCanvas(w, h,
-			x.imageDataDir+".png", x.root)
+		return NewB64MapleCanvas(w, h, bdata)
+		// return NewFileStoredPngMapleCanvas(w, h,x .imageDataDir+".png", x.root)
 	}
 
 	return nil

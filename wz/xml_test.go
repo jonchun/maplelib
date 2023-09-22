@@ -117,7 +117,7 @@ func TestXml(t *testing.T) {
 		t.Errorf("Mob.wz/0210100.img/move/0: is not a MapleCanvas")
 	}
 
-	c.SetPathPrefix(path)
+	// c.SetPathPrefix(path)
 	canvas := c.Image()
 	if canvas == nil {
 		t.Errorf("Mob.wz/0210100.img/move/0: failed to load 0.png")

@@ -53,6 +53,9 @@ func (f *FileStoredPngMapleCanvas) Image() *image.Image {
 	f.loadImageIfNecessary()
 	return f.img
 }
+func (f *FileStoredPngMapleCanvas) ImagePath() string {
+	return f.filepath
+}
 
 // SetPathPrefix is internally used to append the absolute path to the
 // image's path when running unit tests that are stored in temporary folders

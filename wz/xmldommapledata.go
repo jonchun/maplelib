@@ -53,9 +53,10 @@ func NewXMLDomMapleData(file *os.File, path string, root string) (
 }
 
 // fromNode is internally used to wrap child nodes as XMLDomMapleData objects
-func fromNode(node *xmlx.Node) *XMLDomMapleData {
+func fromNode(node *xmlx.Node, root string) *XMLDomMapleData {
 	return &XMLDomMapleData{
 		node: node,
+		root: root,
 	}
 }
 
@@ -103,7 +104,7 @@ func (x *XMLDomMapleData) ChildByPath(path string) MapleData {
 	}
 
 	// return the desired node
-	res := fromNode(mynode)
+	res := fromNode(mynode, x.root)
 	res.imageDataDir = newdatadir
 	// imageDataDir now holds the correct path for the png file
 
@@ -120,7 +121,7 @@ func (x *XMLDomMapleData) Children() []MapleData {
 			continue
 		}
 
-		child := fromNode(childNode)
+		child := fromNode(childNode, x.root)
 		child.imageDataDir = filepath.Join(x.imageDataDir, x.Name())
 		res = append(res, child)
 	}
@@ -155,6 +156,9 @@ func (x *XMLDomMapleData) Get() interface{} {
 	case CANVAS:
 		w := x.node.Ai("", "width")
 		h := x.node.Ai("", "height")
+		// bdata := x.node.As("", "basedata")
+
+		// return NewB64MapleCanvas(w, h, bdata)
 		return NewFileStoredPngMapleCanvas(w, h,
 			x.imageDataDir+".png", x.root)
 	}
@@ -206,7 +210,7 @@ func (x *XMLDomMapleData) Parent() MapleDataEntity {
 		return nil
 	}
 
-	parentData := fromNode(parentNode)
+	parentData := fromNode(parentNode, x.root)
 	parentData.imageDataDir = x.imageDataDir[0:strings.LastIndex(x.imageDataDir, "/")]
 	return parentData
 }

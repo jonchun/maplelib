@@ -16,17 +16,17 @@ Getting started
 ============
 Make sure that you have git and go installed and run
 
-	go get github.com/jteeuwen/go-pkg-xmlx
-	go get github.com/Francesco149/maplelib
+	go get github.com/mattn/go-pkg-xmlx
+	go get github.com/jonchun/maplelib
 
 You can also manually clone the repository anywhere you want by running
 
-	git clone https://github.com/Francesco149/maplelib.git
+	git clone https://github.com/jonchun/maplelib.git
     
-To verify that jteeuwen's xml library and my library are installed and working, run
+To verify that mattn's xml library and my library are installed and working, run
 
-	go test github.com/jteeuwen/go-pkg-xmlx/...
-	go test github.com/Francesco149/maplelib/...
+	go test github.com/mattn/go-pkg-xmlx/...
+	go test github.com/jonchun/maplelib/...
     
 Examples
 ============
@@ -39,7 +39,7 @@ Building, encrypting, decrypting and decoding a packet:
 		"fmt"
 		"crypto/rand"
 	)
-	import "github.com/Francesco149/maplelib"
+	import "github.com/jonchun/maplelib"
 
 	func main() {
 		// initialize random initialization vector
@@ -106,13 +106,13 @@ Reading wz xml files:
 		"os"
 	)
 
-	import "github.com/Francesco149/maplelib/wz"
+	import "github.com/jonchun/maplelib/wz"
 
 	func main() {
 		// path is just the full or relative path to your wz xml directory
 		// I'm just retrieving my test xml files' directory for this example
 		path := filepath.Join(os.Getenv("GOPATH"), "src", "github.com",
-			"Francesco149", "maplelib", "wz", "testfiles")
+			"jonchun", "maplelib", "wz", "testfiles")
 
 		// opening the xml wz root folder
 		x, err := wz.NewMapleDataProvider(path)
@@ -146,4 +146,4 @@ You can view the documentation as HTML by simply running
 
 and visiting
 
-	http://localhost:6060/pkg/github.com/Francesco149/maplelib/
+	http://localhost:6060/pkg/github.com/jonchun/maplelib/

@@ -23,9 +23,9 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-)
 
-import "github.com/jteeuwen/go-pkg-xmlx"
+	xmlx "github.com/mattn/go-pkg-xmlx"
+)
 
 // A XMLDomMapleData is a wrapper around xmlx.Node and
 // holds the data for a parsed wz xml file's node and provides

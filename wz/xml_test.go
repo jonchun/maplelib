@@ -18,9 +18,9 @@ package wz
 import (
 	"fmt"
 	"image"
-	"os"
 	"path/filepath"
 	"reflect"
+	"runtime"
 	"testing"
 )
 
@@ -28,8 +28,10 @@ func TestXml(t *testing.T) {
 	expected := []interface{}{
 		int32(180), float32(100.0), "L3", image.Pt(29, 51)}
 
-	path := filepath.Join(os.Getenv("GOPATH"), "src", "github.com",
-		"Francesco149", "maplelib", "wz", "testfiles")
+	// path := filepath.Join(os.Getenv("GOPATH"), "src", "github.com",
+	// 	"jonchun", "maplelib", "wz", "testfiles")
+	_, filename, _, _ := runtime.Caller(0)
+	path := filepath.Join(filepath.Dir(filename), "testfiles")
 
 	x, err := NewMapleDataProvider(path)
 	if err != nil {
@@ -124,10 +126,10 @@ func TestXml(t *testing.T) {
 	w := (*canvas).Bounds().Max.X
 	h := (*canvas).Bounds().Max.Y
 	if w != 237 {
-		t.Errorf("Mob.wz/0210100.img/move/0/0.png: width=%v, expected 237")
+		t.Errorf("Mob.wz/0210100.img/move/0/0.png: width=%v, expected 237", w)
 	}
 	if h != 248 {
-		t.Errorf("Mob.wz/0210100.img/move/0/0.png: height=%v, expected 248")
+		t.Errorf("Mob.wz/0210100.img/move/0/0.png: height=%v, expected 248", h)
 	}
 
 	// VECTOR

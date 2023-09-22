@@ -24,6 +24,4 @@ type MapleCanvas interface {
 	Height() int
 	Width() int
 	Image() *image.Image
-	ImagePath() string
-	SetPathPrefix(prefix string)
 }

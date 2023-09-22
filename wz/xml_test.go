@@ -117,7 +117,7 @@ func TestXml(t *testing.T) {
 		t.Errorf("Mob.wz/0210100.img/move/0: is not a MapleCanvas")
 	}
 
-	c.SetPathPrefix(path)
+	// c.SetPathPrefix(path)
 	canvas := c.Image()
 	if canvas == nil {
 		t.Errorf("Mob.wz/0210100.img/move/0: failed to load 0.png")
@@ -125,11 +125,11 @@ func TestXml(t *testing.T) {
 
 	w := (*canvas).Bounds().Max.X
 	h := (*canvas).Bounds().Max.Y
-	if w != 237 {
-		t.Errorf("Mob.wz/0210100.img/move/0/0.png: width=%v, expected 237", w)
+	if w != 70 {
+		t.Errorf("Mob.wz/0210100.img/move/0/0.png: width=%v, expected 70", w)
 	}
-	if h != 248 {
-		t.Errorf("Mob.wz/0210100.img/move/0/0.png: height=%v, expected 248", h)
+	if h != 51 {
+		t.Errorf("Mob.wz/0210100.img/move/0/0.png: height=%v, expected 51", h)
 	}
 
 	// VECTOR

@@ -31,19 +31,21 @@ import (
 // holds the data for a parsed wz xml file's node and provides
 // access to all of its children
 type XMLDomMapleData struct {
+	root         string
 	node         *xmlx.Node
 	imageDataDir string
 }
 
 // NewXMLDomMapleData parses the given xml file into a tree and returns the
 // first node
-func NewXMLDomMapleData(file *os.File, path string) (
+func NewXMLDomMapleData(file *os.File, path string, root string) (
 	res *XMLDomMapleData, err error) {
 
 	doc := xmlx.New()
 	err = doc.LoadStream(file, nil)
 
 	res = &XMLDomMapleData{
+		root:         root,
 		node:         doc.Root.Children[1],
 		imageDataDir: path,
 	}
@@ -154,7 +156,7 @@ func (x *XMLDomMapleData) Get() interface{} {
 		w := x.node.Ai("", "width")
 		h := x.node.Ai("", "height")
 		return NewFileStoredPngMapleCanvas(w, h,
-			x.imageDataDir+".png")
+			x.imageDataDir+".png", x.root)
 	}
 
 	return nil

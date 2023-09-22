@@ -111,7 +111,7 @@ func (x *Xml) Get(path string) (res MapleData, err error) {
 	}
 	defer dataFile.Close()
 
-	res, err = NewXMLDomMapleData(dataFile, path)
+	res, err = NewXMLDomMapleData(dataFile, path, x.root)
 	return
 }
 

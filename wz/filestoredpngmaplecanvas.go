@@ -27,6 +27,7 @@ import (
 // A FileStoredPngMapleCanvas is a wrapper around image.Image that holds info
 // about a png image extracted from a wz file
 type FileStoredPngMapleCanvas struct {
+	root     string
 	filepath string
 	width    int
 	height   int
@@ -35,10 +36,11 @@ type FileStoredPngMapleCanvas struct {
 
 // NewFileStoredPngMapleCanvas initializes a new FileStoredPngMapleCanvas object
 // with the given file path and size
-func NewFileStoredPngMapleCanvas(w, h int, path string,
+func NewFileStoredPngMapleCanvas(w, h int, path string, root string,
 ) *FileStoredPngMapleCanvas {
 
 	return &FileStoredPngMapleCanvas{
+		root:     root,
 		filepath: path,
 		width:    w,
 		height:   h,
@@ -55,7 +57,8 @@ func (f *FileStoredPngMapleCanvas) Image() *image.Image {
 // SetPathPrefix is internally used to append the absolute path to the
 // image's path when running unit tests that are stored in temporary folders
 func (f *FileStoredPngMapleCanvas) SetPathPrefix(prefix string) {
-	f.filepath = filepath.Join(prefix, f.filepath)
+	// f.filepath = filepath.Join(prefix, f.filepath)
+	f.root = prefix
 }
 
 func (f *FileStoredPngMapleCanvas) loadImageIfNecessary() {
@@ -63,7 +66,8 @@ func (f *FileStoredPngMapleCanvas) loadImageIfNecessary() {
 		return
 	}
 
-	file, err := os.Open(f.filepath)
+	fp := filepath.Join(f.root, f.filepath)
+	file, err := os.Open(fp)
 	if err != nil {
 		return
 	}

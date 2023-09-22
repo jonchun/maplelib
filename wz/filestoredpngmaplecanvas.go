@@ -52,9 +52,9 @@ func (f *FileStoredPngMapleCanvas) Image() *image.Image {
 	return f.img
 }
 
-// setTestPathPrefix is internally used to append the absolute path to the
+// SetPathPrefix is internally used to append the absolute path to the
 // image's path when running unit tests that are stored in temporary folders
-func (f *FileStoredPngMapleCanvas) setTestPathPrefix(prefix string) {
+func (f *FileStoredPngMapleCanvas) SetPathPrefix(prefix string) {
 	f.filepath = filepath.Join(prefix, f.filepath)
 }
 

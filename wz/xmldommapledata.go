@@ -46,7 +46,7 @@ func NewXMLDomMapleData(file *os.File, path string, root string) (
 
 	res = &XMLDomMapleData{
 		root:         root,
-		node:         doc.Root.Children[1],
+		node:         doc.Root.Children[0],
 		imageDataDir: path,
 	}
 	return

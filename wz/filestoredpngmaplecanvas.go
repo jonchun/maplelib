@@ -68,8 +68,7 @@ func (f *FileStoredPngMapleCanvas) loadImageIfNecessary() {
 	if f.img != nil {
 		return
 	}
-
-	fp := filepath.Join(f.root, f.filepath)
+	fp := filepath.Clean(filepath.Join(f.root, f.filepath))
 	file, err := os.Open(fp)
 	if err != nil {
 		return
